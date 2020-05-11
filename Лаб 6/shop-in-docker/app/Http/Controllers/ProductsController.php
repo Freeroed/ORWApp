@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 
 class ProductsController extends Controller
 {
     public function index(){
-    //$redis = app()->make('redis');
-    //$redis->set('key1', "testVlis");
-    //return $redis->get('key1');
-    $products = Product::all();
-    //$products = Redis::rememberForever('bigX', function() {
-       // return Product::all();
-   // });
-    Redis::set('products', $products);
+
+    $products = Cache::get('products');
+    if (!$products){
+        $products = Product::all();
+        Cache::set('products', $products);
+    }
     return view('products', compact('products'));
 	}
 
