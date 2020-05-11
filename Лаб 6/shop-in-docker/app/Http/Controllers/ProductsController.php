@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Support\Facades\Cache;
 
 class ProductsController extends Controller
 {
     public function index(){
-	$products = Product::all();
-
-	return view('products', compact('products'));
+    //$products = Product::all();
+    //echo Cache::set("item","Hello");
+    //echo Cache::get('item');
+    //return ($products);
+    //return view('products', compact('products'));
+    $products = Cache::rememberForever('bigX', function() {
+        return Product::all();
+    });
+    return view('products', compact('products'));
 	}
 
 	public function save(Request $request) {
