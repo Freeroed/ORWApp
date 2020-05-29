@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "masters",
+  "info": {
+    "name": "master"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "surname": {
+      "type": "string"
+    },
+    "animals": {
+      "via": "master",
+      "collection": "animal"
+    }
+  }
+}
