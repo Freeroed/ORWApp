@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animals",
+  "info": {
+    "name": "Animal"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "master": {
+      "model": "master",
+      "via": "animals"
+    },
+    "breed": {
+      "model": "breed",
+      "via": "animals"
+    },
+    "image": {
+      "type": "string"
+    }
+  }
+}

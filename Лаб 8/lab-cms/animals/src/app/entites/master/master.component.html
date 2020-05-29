@@ -1,0 +1,36 @@
+<div>
+    <h2>
+        Хозяева животных
+    </h2>
+    <div *ngIf="masters && masters?.length > 0">
+        <div class="col-md-4" *ngFor="let master of masters">
+            <div class="card mb-4 box-shadow">
+                
+                <div class="card-body">
+                  <p class="card-text">{{master.name}}  {{master.surname}}</p>
+                  <p>Животные этого хозяина</p>
+                  <div class="table-responsive" *ngIf="master.animals && master.animals.length > 0">
+                    <table  >
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">Кличка</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let animal of master.animals">
+                                <td>{{animal.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                  <div class="alert alert-warning" *ngIf="master.animals?.length == 0">
+                    Нет информации о животных этой породы
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="alert alert-warning" *ngIf="masters?.length == 0">
+        Данные о породах не загружены
+    </div>
+</div>
